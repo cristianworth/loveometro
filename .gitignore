@@ -1,0 +1,26 @@
+# Personal media stays local, including generated copies used by the preview.
+/imagens/
+/public/media/
+/song/
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.gif
+*.mp4
+*.mov
+*.mp3
+*.wav
+*.m4a
+*.ogg
+
+# Dependencies, builds, and local tooling.
+/node_modules/
+/dist/
+/.local/
+/.env
+/.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,21 @@
+{
+  "name": "loveometro",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "An interactive celebration of eight months together.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "prepare:media": "node scripts/prepare-media.mjs",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "sharp": "0.35.5",
+    "vite": "8.3.5"
+  },
+  "dependencies": {
+    "canvas-confetti": "1.9.4"
+  }
+}
