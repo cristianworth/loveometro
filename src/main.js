@@ -3,6 +3,7 @@ import './styles.css';
 import { couple, finalMemories, questions } from './content.js';
 import { addMonth, answerQuestion, createGame, getProgress, isSpecialDate, nextQuestion, openLetter } from './game.js';
 import { media, mediaUrl } from './media.js';
+import { playMemoryOrbit } from './celebration.js';
 
 const app = document.querySelector('#app');
 const dialog = document.querySelector('#photo-dialog');
@@ -16,6 +17,7 @@ let selectedAnswer = null;
 let galleryIndex = 0;
 let lastPhotoTrigger = null;
 let previousProgress = 0;
+let orbitPlaying = false;
 
 const rose = `<svg class="rose" viewBox="0 0 100 190" aria-hidden="true"><path d="M52 77C30 120 70 142 42 185M49 133C18 131 18 109 44 121M51 154C76 132 86 142 58 163" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M52 80C18 75 17 43 34 38 22 13 48 9 56 24 76 4 96 28 78 43 100 60 77 83 52 80Z" fill="#e53b61" stroke="currentColor" stroke-width="2"/><path d="M34 38C52 28 79 43 64 59 48 75 29 48 45 42 61 35 72 58 52 65M56 24C42 25 40 33 43 38M78 43C79 65 67 78 52 80" fill="none" stroke="currentColor" stroke-width="2"/></svg>`;
 const heart = '<span aria-hidden="true">♥</span>';
@@ -92,7 +94,25 @@ function celebrate({ big = false, origin } = {}) {
 
 function renderMonths(enter = false) {
   const complete = game.stage === 'memories-complete';
-  app.innerHTML = `<section class="game-layout months-layout ${enter ? 'screen-arrives' : ''}">${meter()}<section class="months-workspace"><p class="personal-note">${complete ? 'Agora está tudo aqui. Cheio de nós.' : 'Ué… ainda falta alguma coisa.'}</p><h1 id="months-title" tabindex="-1">Oito meses.<br><em>Oito pedacinhos de nós.</em></h1><p class="months-description">${complete ? 'Oito lembranças guardadas. E uma carta minha para você.' : 'Cada clique, uma lembrança. Cada lembrança, um pouquinho mais de amor.'}</p><div class="memory-board">${finalMemories.map((id, index) => index < game.months ? photo(id, { small: true, newPhoto: index === game.months - 1, index }) : `<div class="empty-polaroid" aria-label="Lembrança ${index + 1} ainda guardada"><span aria-hidden="true">♡</span><span>${index + 1}</span></div>`).join('')}</div>${complete ? `<button class="primary-button" data-open-letter>Abrir minha carta ${heart}</button>` : '<button class="love-button" id="add-love" aria-label="Adicionar 1% e revelar a próxima lembrança"><span aria-hidden="true">♥</span><span>Mais um pedacinho</span><span class="love-increment">+1%</span></button>'}<p class="click-counter" role="status">${game.months} de 8 lembranças reveladas</p></section></section>`;
+  app.innerHTML = `<section class="game-layout months-layout ${enter ? 'screen-arrives' : ''}">${meter()}<section class="months-workspace"><p class="personal-note">${complete ? 'Agora está tudo aqui. Cheio de nós.' : 'Ué… ainda falta alguma coisa.'}</p><h1 id="months-title" tabindex="-1">Oito meses.<br><em>Oito pedacinhos de nós.</em></h1><p class="months-description">${complete ? 'Oito lembranças guardadas. E uma carta minha para você.' : 'Cada clique, uma lembrança. Cada lembrança, um pouquinho mais de amor.'}</p><div class="memory-board">${finalMemories.map((id, index) => index < game.months ? photo(id, { small: true, newPhoto: index === game.months - 1, index }) : `<div class="empty-polaroid" aria-label="Lembrança ${index + 1} ainda guardada"><span aria-hidden="true">♡</span><span>${index + 1}</span></div>`).join('')}</div>${complete ? `<div class="completed-memory-actions"><button class="primary-button" data-open-letter>Abrir minha carta ${heart}</button><button class="text-button" data-replay-orbit>Rever nossa órbita</button></div>` : '<button class="love-button" id="add-love" aria-label="Adicionar 1% e revelar a próxima lembrança"><span aria-hidden="true">♥</span><span>Mais um pedacinho</span><span class="love-increment">+1%</span></button>'}<p class="click-counter" role="status">${game.months} de 8 lembranças reveladas</p></section></section>`;
+}
+
+async function startOrbitCelebration() {
+  if (orbitPlaying || game?.stage !== 'memories-complete') return;
+  orbitPlaying = true;
+  const replay = document.querySelector('[data-replay-orbit]');
+  replay.disabled = true;
+  try {
+    await playMemoryOrbit(document.querySelector('.memory-board'));
+  } catch (error) {
+    console.warn('The celebration could not finish; the memory board is still available.', error);
+  } finally {
+    orbitPlaying = false;
+    if (replay.isConnected) {
+      replay.disabled = false;
+      document.querySelector('[data-open-letter]').focus({ preventScroll: true });
+    }
+  }
 }
 
 function renderFinal() {
@@ -149,7 +169,12 @@ app.addEventListener('click', (event) => {
     game = addMonth(game);
     renderMonths();
     document.querySelector(game.stage === 'memories-complete' ? '[data-open-letter]' : '#add-love').focus({ preventScroll: true });
-    celebrate();
+    if (game.stage === 'memories-complete') startOrbitCelebration();
+    else celebrate();
+    return;
+  }
+  if (event.target.closest('[data-replay-orbit]')) {
+    startOrbitCelebration();
     return;
   }
   if (event.target.closest('[data-open-letter]') && game?.stage === 'memories-complete') {

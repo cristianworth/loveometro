@@ -22,6 +22,8 @@ The original files stay in `imagens/`. The media preparation script creates smal
 
 Question 7 accepts only "Todos acima" for the three groups and reveals all three photographs. The eight final photographs represent memories of the relationship, not a factual month-by-month timeline. The eighth click leaves all eight photos visible at 100%; a separate "Abrir minha carta" button opens the final letter. Clicking any revealed photograph opens a larger view. The 226-hour call screenshot stays close to its original dimensions.
 
+At 100%, the eight photographs fly into an orbit around a glowing heart, then return to their positions in the mural after about 5.6 seconds. A short confetti burst opens the sequence. "Rever nossa órbita" replays it; "Voltar às lembranças" or Escape ends it early. The music continues throughout. Reduced-motion preferences skip the sequence, and a viewport resize returns directly to the completed mural. The letter always opens through its own button after the celebration.
+
 ## Music
 
 Place the supplied audio at `song/Avenged_Sevenfold_-_Gunslinger.mp3`. The integration starts it synchronously in the successful date-form submission, loops it through all screens and provides pause/play and volume controls. An incorrect date does not start playback. If the browser blocks playback, the play button remains available. If the file is absent, the rest of the experience works and the controls stay hidden.
