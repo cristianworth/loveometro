@@ -10,6 +10,7 @@ export const media = {
   gourmet: { source: 'comida/comida_gourmet.png', alt: 'Nosso encontro para experimentar comida juntos.', caption: 'O ingrediente favorito era a companhia.' },
   daniel: { source: 'foto-com-daniel.jpg', alt: 'Nós em um rolê com o Daniel.', caption: 'Daniel também fez parte dos nossos rolês.' },
   family: { source: 'foto-com-familia.jpg', alt: 'Nosso encontro com a família, fotografado por Cristiane.', caption: 'E a Cristiane registrou esse encontro com a família.' },
+  fortalezaFriends: { source: 'fotocom-gabriel-e-lucas.jpeg', alt: 'Nosso rolê com os amigos em Fortaleza.', caption: 'E os rolês com os amigos em Fortaleza também.' },
   call: { source: 'nos-emcall-variashoras.png', alt: 'babydoll e dada em uma call do Discord com 226 horas, 33 minutos e 40 segundos.', caption: 'Tem call que nem parece ter fim. Ainda bem.', kind: 'call' },
   fries: { source: 'comida/batata frita gourmet.jpg', alt: 'Batata frita de um dos nossos encontros.', caption: 'Batata frita gourmet.' },
   hotdog: { source: 'comida/cachorro quente de rua.jpg', alt: 'Nosso cachorro-quente de rua.', caption: 'Do gourmet ao cachorro-quente de rua.' },

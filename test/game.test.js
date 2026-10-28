@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { addMonth, answerQuestion, createGame, getProgress, isSpecialDate, nextQuestion } from '../src/game.js';
+import { addMonth, answerQuestion, createGame, getProgress, isSpecialDate, nextQuestion, openLetter } from '../src/game.js';
 import { finalMemories, questions } from '../src/content.js';
 
 test('the date accepts both keyboard formats and rejects other dates', () => {
@@ -24,10 +24,11 @@ test('an accepted answer awards progress only once, including double clicks', ()
   assert.equal(getProgress(repeated.game), 11.5);
 });
 
-test('Daniel and Cristiane are independently accepted on question seven', () => {
+test('question seven requires all three groups and reveals all three memories', () => {
   const question = questions[6];
-  for (const accepted of [0, 2]) assert.equal(answerQuestion(createGame(8), question, accepted).result, 'correct');
-  for (const rejected of [1, 3]) assert.equal(answerQuestion(createGame(8), question, rejected).result, 'incorrect');
+  assert.equal(answerQuestion(createGame(8), question, 3).result, 'correct');
+  for (const rejected of [0, 1, 2]) assert.equal(answerQuestion(createGame(8), question, rejected).result, 'incorrect');
+  assert.deepEqual(question.photos, ['daniel', 'family', 'fortalezaFriends']);
 });
 
 test('the complete journey stops at 92 then needs exactly eight individual clicks', () => {
@@ -42,8 +43,18 @@ test('the complete journey stops at 92 then needs exactly eight individual click
   for (let count = 1; count <= 8; count++) {
     game = addMonth(game);
     assert.equal(getProgress(game), 92 + count);
-    assert.equal(game.stage, count === 8 ? 'final' : 'months');
+    assert.equal(game.stage, count === 8 ? 'memories-complete' : 'months');
   }
   assert.deepEqual(addMonth(game), game);
   assert.equal(finalMemories.length, 8);
+  assert.equal(game.months, finalMemories.length);
+  assert.equal(openLetter(game).stage, 'final');
+  assert.equal(getProgress(openLetter(game)), 100);
+});
+
+test('the letter cannot open before all eight memories have been revealed', () => {
+  const quiz = createGame(questions.length);
+  assert.deepEqual(openLetter(quiz), quiz);
+  const incomplete = { ...quiz, stage: 'months', completedQuestions: questions.length, months: 7 };
+  assert.deepEqual(openLetter(incomplete), incomplete);
 });

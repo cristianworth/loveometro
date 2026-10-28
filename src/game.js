@@ -26,5 +26,10 @@ export function nextQuestion(game) {
 export function addMonth(game) {
   if (game.stage !== 'months') return game;
   const months = Math.min(8, game.months + 1);
-  return { ...game, months, stage: months === 8 ? 'final' : 'months' };
+  return { ...game, months, stage: months === 8 ? 'memories-complete' : 'months' };
+}
+
+export function openLetter(game) {
+  if (game.stage !== 'memories-complete') return game;
+  return { ...game, stage: 'final' };
 }

@@ -1,11 +1,20 @@
-// These texts are a first draft. Personal messages can be adjusted here.
+// Quiz captions are editable drafts. The closing letter preserves the supplied text.
 export const couple = {
   from: 'dada',
   to: 'babydoll',
   date: '28/02',
   closingTitle: 'O medidor acaba. A gente continua.',
-  closingMessage: 'De uma partida no LoL aos abraços que eu nunca quero soltar. Das calls sem fim aos nossos encontros, eu gosto da vida que a gente divide. Obrigado por esses oito meses, babydoll. Que venham tantas outras lembranças nossas.',
-  signature: 'Com amor, dada',
+  closingMessage: `O site é feito com IA mas essa mensagem e o nosso amor não são!
+
+Venho aqui no final pra dizer que te amo muito, e admiro a mulher que vc se tornou: forte, dedicada, trabalhadora, amorosa, prestativa e carinhosa. Muito lindo ver você se esforçando pra ser uma pessoa melhor pra nós dois!
+
+E eu nunca fui tão próximo de alguém como eu sou de você, eu aprendo muito em pontos que nunca refleti em mim mesmo, vc faz me ver coisas em mim que nem eu mesmo conhecia: ter a capacidade de amar mesmo sendo pouco sentimentalista, se importar mais com sua rotina do que a minha, escutar horas de kpop e até gostar de algumas, explorar lugares mesmo não gostando de sair de casa, estudar e entender politica mesmo detestando, e muito mais.
+
+Você me mudou de tantas maneiras que eu nem sei quantificar, e vou continuar mudando pois é isso que significa o amor, colocar uma pessoa acima dos seus desejos, necessidades e prioridades, é rotacionar seu mundo ao redor dela, e termino assim desejando que para todo o sempre eu continue a orbitar ao redor do meu sol mais brilhante.
+
+Te amo baby!
+
+Com amor, dada ♡`,
 };
 
 export const questions = [
@@ -41,12 +50,12 @@ export const questions = [
   },
   {
     id: 'flowers', chapter: 'Carinho em forma de presente',
-    title: 'Qual destes presentes eu já te dei duas vezes?',
+    title: 'Qual destes presentes eu já te dei várias vezes?',
     options: ['Um troféu de melhor suporte.', 'Flores.', 'Um teclado.', 'Um passe vitalício para me carregar no LoL.'],
     correct: [1],
     hints: ['É um presente que combina com esse site inteiro.', 'Tem pétalas nessa resposta. 🌹'],
     success: 'E eu responderia com flores de novo.',
-    note: 'Dois presentes. Muitos jeitos de dizer que eu penso em você.',
+    note: 'Muitas flores. Muitos jeitos de dizer que eu penso em você.',
     photos: ['firstFlowers', 'holdingFlowers', 'thirdFlowers'],
   },
   {
@@ -73,13 +82,13 @@ export const questions = [
   {
     id: 'our-people', chapter: 'Gente que faz parte',
     title: 'Quem também fez parte dos nossos rolês e registros?',
-    subtitle: 'Escolha uma pessoa que fez parte dessas lembranças.',
-    options: ['Daniel.', 'Rafeu.', 'Cristiane.', 'Ismael.'],
-    correct: [0, 2],
-    hints: ['Pensa em quem saiu com a gente ou ficou atrás da câmera.', 'Um participou do rolê. A outra registrou a família.'],
-    success: 'Acertou! Daniel no rolê, Cristiane atrás da câmera.',
+    subtitle: 'Pensa nos nossos encontros, na família e nos amigos de Fortaleza.',
+    options: ['Daniel.', 'Cristiane, Arthur, Carine.', 'Cabral, Lucas, Ale (CE).', 'Todos acima.'],
+    correct: [3],
+    hints: ['Sim! Mas tem mais gente que também faz parte.', 'Lembra dos rolês com a família e com os amigos de Fortaleza também.'],
+    success: 'Todos eles! Cada um faz parte de um pedacinho da nossa história.',
     note: 'E assim a nossa história foi encontrando outras pessoas queridas.',
-    photos: ['daniel', 'family'],
+    photos: ['daniel', 'family', 'fortalezaFriends'],
   },
   {
     id: 'our-routine', chapter: 'O nosso jeito de estar perto',

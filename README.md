@@ -16,11 +16,11 @@ The original files stay in `imagens/`. The media preparation script creates smal
 
 ## Editable content
 
-- `src/content.js`: questions, accepted answers, hints, final photo order and personal message. The personal message and captions are draft suggestions for review.
+- `src/content.js`: questions, accepted answers, hints, final photo order and personal message. The closing letter preserves Cristian's supplied wording; its paragraph breaks are for readability. Other captions remain editable drafts.
 - `src/media.js`: original file paths, captions and image descriptions.
 - `src/styles.css`: desktop layout and the red, pink and white palette.
 
-Question 7 accepts Daniel or Cristiane independently and reveals both photographs. The eight final photographs represent memories of the relationship, not a factual month-by-month timeline. Clicking any revealed photograph opens a larger view. The 226-hour call screenshot stays close to its original dimensions.
+Question 7 accepts only "Todos acima" for the three groups and reveals all three photographs. The eight final photographs represent memories of the relationship, not a factual month-by-month timeline. The eighth click leaves all eight photos visible at 100%; a separate "Abrir minha carta" button opens the final letter. Clicking any revealed photograph opens a larger view. The 226-hour call screenshot stays close to its original dimensions.
 
 ## Music
 
@@ -37,7 +37,7 @@ npm run build
 npm run preview
 ```
 
-The automated checks cover date validation, incorrect answers, repeated clicks, both accepted answers on question 7 and the exact 92% + eight clicks journey. Practical review should also cover image reveals, enlarging photos, the food gallery, keyboard navigation and music controls.
+The automated checks cover date validation, incorrect answers, repeated clicks, the accepted answer on question 7, the exact 92% + eight clicks journey and the separate transition from the completed memory board to the letter. Practical review should also cover image reveals, enlarging photos, the food gallery, keyboard navigation and music controls.
 
 ## Privacy and hosting
 

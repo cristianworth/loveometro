@@ -1,7 +1,7 @@
 import confetti from 'canvas-confetti';
 import './styles.css';
 import { couple, finalMemories, questions } from './content.js';
-import { addMonth, answerQuestion, createGame, getProgress, isSpecialDate, nextQuestion } from './game.js';
+import { addMonth, answerQuestion, createGame, getProgress, isSpecialDate, nextQuestion, openLetter } from './game.js';
 import { media, mediaUrl } from './media.js';
 
 const app = document.querySelector('#app');
@@ -91,11 +91,14 @@ function celebrate({ big = false, origin } = {}) {
 }
 
 function renderMonths(enter = false) {
-  app.innerHTML = `<section class="game-layout months-layout ${enter ? 'screen-arrives' : ''}">${meter()}<section class="months-workspace"><p class="personal-note">Ué… ainda falta alguma coisa.</p><h1 id="months-title" tabindex="-1">Oito meses.<br><em>Oito pedacinhos de nós.</em></h1><p class="months-description">Cada clique, uma lembrança. Cada lembrança, um pouquinho mais de amor.</p><div class="memory-board">${finalMemories.map((id, index) => index < game.months ? photo(id, { small: true, newPhoto: index === game.months - 1, index }) : `<div class="empty-polaroid" aria-label="Lembrança ${index + 1} ainda guardada"><span aria-hidden="true">♡</span><span>${index + 1}</span></div>`).join('')}</div><button class="love-button" id="add-love" aria-label="Adicionar 1% e revelar a próxima lembrança"><span aria-hidden="true">♥</span><span>Mais um pedacinho</span><span class="love-increment">+1%</span></button><p class="click-counter" role="status">${game.months} de 8 lembranças reveladas</p></section></section>`;
+  const complete = game.stage === 'memories-complete';
+  app.innerHTML = `<section class="game-layout months-layout ${enter ? 'screen-arrives' : ''}">${meter()}<section class="months-workspace"><p class="personal-note">${complete ? 'Agora está tudo aqui. Cheio de nós.' : 'Ué… ainda falta alguma coisa.'}</p><h1 id="months-title" tabindex="-1">Oito meses.<br><em>Oito pedacinhos de nós.</em></h1><p class="months-description">${complete ? 'Oito lembranças guardadas. E uma carta minha para você.' : 'Cada clique, uma lembrança. Cada lembrança, um pouquinho mais de amor.'}</p><div class="memory-board">${finalMemories.map((id, index) => index < game.months ? photo(id, { small: true, newPhoto: index === game.months - 1, index }) : `<div class="empty-polaroid" aria-label="Lembrança ${index + 1} ainda guardada"><span aria-hidden="true">♡</span><span>${index + 1}</span></div>`).join('')}</div>${complete ? `<button class="primary-button" data-open-letter>Abrir minha carta ${heart}</button>` : '<button class="love-button" id="add-love" aria-label="Adicionar 1% e revelar a próxima lembrança"><span aria-hidden="true">♥</span><span>Mais um pedacinho</span><span class="love-increment">+1%</span></button>'}<p class="click-counter" role="status">${game.months} de 8 lembranças reveladas</p></section></section>`;
 }
 
 function renderFinal() {
-  app.innerHTML = `<section class="final-screen screen-arrives"><div class="final-heading"><div class="hundred">100<span>%</span><span class="hundred-heart" aria-hidden="true">♥</span></div><p class="personal-note">Feliz oito meses, babydoll.</p><h1 id="final-title" tabindex="-1">${escapeHtml(couple.closingTitle)}</h1></div><section class="final-letter">${rose}<div><p>${escapeHtml(couple.closingMessage)}</p><p class="final-signature">${escapeHtml(couple.signature)} ♡</p></div></section><div class="final-photo-wall">${finalMemories.map((id, index) => photo(id, { small: true, newPhoto: true, index })).join('')}</div><div class="final-actions"><button class="secondary-button" data-celebrate>Mais confetes! ${heart}</button><button class="text-button" data-restart>Rever nossa história</button></div><p class="final-postscript">e que venham todos os próximos capítulos.</p></section>`;
+  const paragraphs = couple.closingMessage.split('\n\n');
+  const letter = paragraphs.map((paragraph, index) => `<p${index === paragraphs.length - 1 ? ' class="final-signature"' : ''}>${escapeHtml(paragraph)}</p>`).join('');
+  app.innerHTML = `<section class="final-screen screen-arrives"><div class="final-heading"><div class="hundred">100<span>%</span><span class="hundred-heart" aria-hidden="true">♥</span></div><p class="personal-note">Feliz oito meses, babydoll.</p><h1 id="final-title" tabindex="-1">${escapeHtml(couple.closingTitle)}</h1></div><article class="final-letter" aria-label="Carta de dada para babydoll">${rose}<div class="letter-content">${letter}</div></article><div class="final-photo-wall">${finalMemories.map((id, index) => photo(id, { small: true, newPhoto: true, index })).join('')}</div><div class="final-actions"><button class="secondary-button" data-celebrate>Mais confetes! ${heart}</button><button class="text-button" data-restart>Rever nossa história</button></div><p class="final-postscript">e que venham todos os próximos capítulos.</p></section>`;
   document.querySelector('#final-title').focus({ preventScroll: true });
   window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
   celebrate({ big: true });
@@ -144,12 +147,14 @@ app.addEventListener('click', (event) => {
   }
   if (event.target.closest('#add-love') && game?.stage === 'months') {
     game = addMonth(game);
-    if (game.stage === 'final') renderFinal();
-    else {
-      renderMonths();
-      document.querySelector('#add-love').focus({ preventScroll: true });
-      celebrate();
-    }
+    renderMonths();
+    document.querySelector(game.stage === 'memories-complete' ? '[data-open-letter]' : '#add-love').focus({ preventScroll: true });
+    celebrate();
+    return;
+  }
+  if (event.target.closest('[data-open-letter]') && game?.stage === 'memories-complete') {
+    game = openLetter(game);
+    renderFinal();
     return;
   }
   const photoButton = event.target.closest('[data-photo]');
