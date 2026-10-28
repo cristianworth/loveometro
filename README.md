@@ -2,7 +2,7 @@
 
 Um presente de dada para baby: oito perguntas, lembranças de vocês e um coração que chega aos 100% para celebrar oito meses de namoro. Experiência pensada para PC, com vermelho, rosa, branco, polaroides, rosas e confetes.
 
-**LIVE:** [cristianworth.github.io/loveometro](https://cristianworth.github.io/loveometro/) — endereço previsto, com ativação ainda pendente. O site ainda não foi publicado.
+**LIVE:** [cristianworth.github.io/loveometro](https://cristianworth.github.io/loveometro/) — endereço previsto, ainda não publicado. O plano atual da conta não permite GitHub Pages neste repositório privado; a ativação depende de um plano compatível ou da escolha de outra configuração de hospedagem.
 
 **Repositório:** [cristianworth/loveometro](https://github.com/cristianworth/loveometro), privado.
 
@@ -35,7 +35,7 @@ As mídias ficam nos caminhos abaixo e não acompanham um clone do código:
 - `public/media/`: cópias WebP geradas por `prepare:media`, sem modificar os originais.
 - `song/Avenged_Sevenfold_-_Gunslinger.mp3`: música usada durante a experiência.
 
-Depois do envio autorizado do pacote para a release privada `site-media`, será possível restaurá-lo em outro computador sem precisar dos originais. O pacote está preparado localmente; seu envio ainda está pendente. Veja [Publicação e mídias](docs/DEPLOYMENT.md).
+Depois do envio do pacote para a release privada `site-media`, será possível restaurá-lo em outro computador sem precisar dos originais. O pacote está preparado localmente; seu envio aguarda a resolução da hospedagem. Veja [Publicação e mídias](docs/DEPLOYMENT.md).
 
 ## Onde editar
 
@@ -67,14 +67,14 @@ Os testes cobrem a data, respostas erradas, pontuação sem duplicidade, a pergu
 
 O workflow [Publish Loveometro](.github/workflows/pages.yml) é **manual**. Fazer push atualiza o código, mas não publica nem altera o acesso ao site automaticamente.
 
-A publicação está preparada para usar um pacote de mídias na release privada `site-media`, separado do histórico Git. O pacote foi gerado localmente; a release e seu envio ainda aguardam autorização. Com esse pacote disponível, o workflow restaura as mídias, confere os arquivos, executa os testes e gera o site antes de publicar. Os originais permanecem somente no computador e no backup pessoal.
+A publicação está preparada para usar um pacote de mídias na release privada `site-media`, separado do histórico Git. O envio das mídias e o LIVE público foram autorizados, mas a ativação do Pages foi recusada pelo plano atual. O pacote continua local, sem upload. Com a hospedagem resolvida e esse pacote disponível, o workflow restaura as mídias, confere os arquivos, executa os testes e gera o site antes de publicar. Os originais permanecem somente no computador e no backup pessoal.
 
 Consulte [Publicação e mídias](docs/DEPLOYMENT.md) para preparar o pacote, atualizar os arquivos e publicar.
 
 ## Privacidade
 
 - O repositório é privado; fotos, áudio, dependências, builds e temporários ficam fora do histórico do código.
-- **GitHub Pages comum publica um site acessível pela internet, mesmo quando o repositório é privado.** A ativação do LIVE está pendente dessa confirmação de acesso.
+- **GitHub Pages comum publica um site acessível pela internet, mesmo quando o repositório é privado.** Esse acesso público foi autorizado; a ativação está pendente da resolução do plano da conta.
 - A data inicial faz parte da brincadeira e **não é autenticação**. `noindex` pede exclusão dos buscadores, mas não protege o conteúdo.
 - O build contém as fotos preparadas e o áudio. Regras de `.gitignore` não restringem o acesso aos arquivos que forem publicados nem concedem licença de redistribuição da música.
 

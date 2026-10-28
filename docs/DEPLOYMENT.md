@@ -4,11 +4,12 @@
 
 - Código: [repositório privado no GitHub](https://github.com/cristianworth/loveometro), branch `master`.
 - LIVE previsto: [https://cristianworth.github.io/loveometro/](https://cristianworth.github.io/loveometro/).
-- A ativação do Pages e a execução da publicação aguardam confirmação de que o site e suas mídias podem ficar acessíveis publicamente.
-- O pacote de mídias foi preparado em `.local/site-media.tar.gz`, mas ainda não foi enviado ao GitHub. A criação da release privada `site-media` e o envio do pacote também aguardam autorização.
+- O envio das 35 fotos otimizadas e do MP3 à release privada e a ativação do LIVE público foram autorizados.
+- O GitHub recusou a ativação com HTTP 422: `Your current plan does not support GitHub Pages for this repository.` O repositório permanece privado e não há LIVE publicado.
+- O pacote de mídias foi preparado em `.local/site-media.tar.gz`, mas ainda não foi enviado ao GitHub. A release privada `site-media` só será criada quando a hospedagem estiver resolvida.
 - O workflow é manual: nenhum push publica o site automaticamente.
 
-Para usar Pages a partir deste repositório privado, a conta precisa de um plano compatível, como GitHub Pro. Essa disponibilidade ainda precisa ser confirmada na ativação. Consulte a [documentação do GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
+Para usar Pages a partir deste repositório privado, a conta precisa de um plano compatível, como GitHub Pro. O plano atual não suporta essa configuração. As alternativas são ativar um plano compatível, escolher outra hospedagem mantendo o código privado ou autorizar explicitamente a mudança de visibilidade do repositório. Consulte a [documentação do GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
 
 ## O que vai para cada lugar
 
