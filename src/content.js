@@ -1,7 +1,7 @@
 // Quiz captions are editable drafts. The closing letter preserves the supplied text.
 export const couple = {
   from: 'dada',
-  to: 'babydoll',
+  to: 'baby',
   date: '28/02',
   closingTitle: 'O medidor acaba. A gente continua.',
   closingMessage: `O site é feito com IA mas essa mensagem e o nosso amor não são!
@@ -97,7 +97,7 @@ export const questions = [
     correct: [3],
     hints: ['Sim… mas você está esquecendo um pedacinho.', 'Tem uma resposta que junta tudo o que a gente faz.'],
     success: '226 horas de call. E ainda tem assunto.',
-    note: 'babydoll e dada. O nosso jeito de encurtar a distância.',
+    note: 'baby e dada. O nosso jeito de encurtar a distância.',
     photos: ['call'],
   },
 ];

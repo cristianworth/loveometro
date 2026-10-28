@@ -77,3 +77,11 @@ O workflow tem permissões de leitura do código, das mídias e da configuraçã
 ## Caso a publicação falhe
 
 Se o Pages não estiver disponível no plano da conta, preserve o repositório privado e escolha uma hospedagem compatível antes de alterar a visibilidade. Se faltar mídia, atualize o pacote da release e execute novamente o workflow. Uma execução com falha não deve ser apresentada como LIVE concluído.
+
+## Tirar o LIVE do ar
+
+Em **Settings → Pages**, use **Unpublish site** para remover a publicação atual. Após a despublicação, o endereço deixa de servir o site; o repositório e o histórico continuam privados. Não é necessário apagar o código.
+
+Como o workflow é manual, fazer push não liga o LIVE novamente. Para republicar, é necessário executar uma nova publicação. Uma página ou mídia que alguém já tenha salvo pode continuar existindo fora do LIVE; isso não exige acesso ao repositório privado.
+
+Referência: [despublicar um site no GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/unpublishing-a-github-pages-site).

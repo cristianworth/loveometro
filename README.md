@@ -1,6 +1,6 @@
 # Nosso Loveômetro
 
-Um presente de dada para babydoll: oito perguntas, lembranças de vocês e um coração que chega aos 100% para celebrar oito meses de namoro. Experiência pensada para PC, com vermelho, rosa, branco, polaroides, rosas e confetes.
+Um presente de dada para baby: oito perguntas, lembranças de vocês e um coração que chega aos 100% para celebrar oito meses de namoro. Experiência pensada para PC, com vermelho, rosa, branco, polaroides, rosas e confetes.
 
 **LIVE:** [cristianworth.github.io/loveometro](https://cristianworth.github.io/loveometro/) — endereço previsto, com ativação ainda pendente. O site ainda não foi publicado.
 
