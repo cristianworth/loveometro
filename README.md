@@ -1,50 +1,81 @@
 # Nosso Loveômetro
 
-A local desktop-first anniversary experience from dada to babydoll. Built with HTML, CSS, JavaScript, Vite and canvas-confetti.
+Um presente de dada para babydoll: oito perguntas, lembranças de vocês e um coração que chega aos 100% para celebrar oito meses de namoro. Experiência pensada para PC, com vermelho, rosa, branco, polaroides, rosas e confetes.
 
-## Local preview
+**LIVE:** [cristianworth.github.io/loveometro](https://cristianworth.github.io/loveometro/) — endereço previsto, com ativação ainda pendente. O site ainda não foi publicado.
+
+**Repositório:** [cristianworth/loveometro](https://github.com/cristianworth/loveometro), privado.
+
+## A experiência
+
+1. A data `28/02` abre a história e inicia **Gunslinger**, do Avenged Sevenfold. A música fica em loop, com controles de pausa e volume.
+2. Cada pergunta certa revela fotos e aumenta o loveômetro. Respostas erradas dão dicas e permitem tentar novamente.
+3. As oito perguntas completam **92%**. A pergunta 7 aceita **“Todos acima”** e revela as três fotos dos encontros com amigos e família.
+4. Oito cliques revelam mais oito lembranças e acrescentam **1% por clique**.
+5. Aos **100%**, as fotos orbitam um coração luminoso e retornam ao mural. A sequência dura cerca de 5,6 segundos e pode ser repetida ou encerrada antes.
+6. **“Abrir minha carta”** exibe a mensagem pessoal, preservada conforme o texto fornecido.
+
+As oito fotos finais representam lembranças do relacionamento, sem atribuir cada imagem a um mês específico. As imagens reveladas podem ser ampliadas; a pergunta das comidas tem uma galeria própria. A animação respeita a preferência por movimento reduzido.
+
+## Executar no computador
+
+Requisitos: Node.js 24, npm e as mídias locais. O código usa HTML, CSS, JavaScript, Vite e `canvas-confetti`.
 
 ```sh
-npm install
+npm ci
 npm run prepare:media
 npm run dev
 ```
 
-Open the Local URL printed by Vite. Enter `28/02` or `2802` to start. An incorrect date keeps the entry screen open. Each completed question contributes an equal share of 92%; the last eight percentage points require eight individual clicks.
+Abra a URL `Local` exibida pelo Vite. A entrada aceita `28/02` ou `2802`.
 
-The original files stay in `imagens/`. The media preparation script creates smaller, correctly oriented WebP copies in `public/media/`. Neither originals nor generated copies are committed. Keep a separate backup of personal files; cloning this repository alone will not restore them.
+As mídias ficam nos caminhos abaixo e não acompanham um clone do código:
 
-## Editable content
+- `imagens/`: fotos e prints originais, incluindo as pastas `comida/`, `flores/` e `8marks/`.
+- `public/media/`: cópias WebP geradas por `prepare:media`, sem modificar os originais.
+- `song/Avenged_Sevenfold_-_Gunslinger.mp3`: música usada durante a experiência.
 
-- `src/content.js`: questions, accepted answers, hints, final photo order and personal message. The closing letter preserves Cristian's supplied wording; its paragraph breaks are for readability. Other captions remain editable drafts.
-- `src/media.js`: original file paths, captions and image descriptions.
-- `src/styles.css`: desktop layout and the red, pink and white palette.
+Depois do envio autorizado do pacote para a release privada `site-media`, será possível restaurá-lo em outro computador sem precisar dos originais. O pacote está preparado localmente; seu envio ainda está pendente. Veja [Publicação e mídias](docs/DEPLOYMENT.md).
 
-Question 7 accepts only "Todos acima" for the three groups and reveals all three photographs. The eight final photographs represent memories of the relationship, not a factual month-by-month timeline. The eighth click leaves all eight photos visible at 100%; a separate "Abrir minha carta" button opens the final letter. Clicking any revealed photograph opens a larger view. The 226-hour call screenshot stays close to its original dimensions.
+## Onde editar
 
-At 100%, the eight photographs fly into an orbit around a glowing heart, then return to their positions in the mural after about 5.6 seconds. A short confetti burst opens the sequence. "Rever nossa órbita" replays it; "Voltar às lembranças" or Escape ends it early. The music continues throughout. Reduced-motion preferences skip the sequence, and a viewport resize returns directly to the completed mural. The letter always opens through its own button after the celebration.
+| Arquivo | Responsabilidade |
+| --- | --- |
+| [src/content.js](src/content.js) | Perguntas, alternativas, dicas, ordem das oito lembranças e carta. |
+| [src/media.js](src/media.js) | Caminhos dos originais, legendas e descrições das imagens. |
+| [src/game.js](src/game.js) | Pontuação, avanço entre etapas e abertura da carta. |
+| [src/main.js](src/main.js) | Telas, eventos, galeria, fotos ampliadas e música. |
+| [src/celebration.js](src/celebration.js) | Órbita das fotos, coração luminoso e retorno ao mural. |
+| [src/styles.css](src/styles.css) | Aparência e animações do site. |
 
-## Music
+Ao trocar fotos, atualize os caminhos em `src/media.js` e execute `npm run prepare:media`. As alterações de texto na carta devem ser intencionais; as quebras de parágrafo atuais servem apenas à leitura.
 
-Place the supplied audio at `song/Avenged_Sevenfold_-_Gunslinger.mp3`. The integration starts it synchronously in the successful date-form submission, loops it through all screens and provides pause/play and volume controls. An incorrect date does not start playback. If the browser blocks playback, the play button remains available. If the file is absent, the rest of the experience works and the controls stay hidden.
-
-The audio is ignored by Git, but Vite includes it in a local production build when present. Publishing this build would also publish its images and audio; ignore rules do not provide access control or a music redistribution license. No publishing workflow is configured yet.
-
-## Verification and build
+## Verificar e gerar a versão final
 
 ```sh
+npm run check:media
 npm test
-npm run prepare:media
 npm run build
 npm run preview
 ```
 
-The automated checks cover date validation, incorrect answers, repeated clicks, the accepted answer on question 7, the exact 92% + eight clicks journey and the separate transition from the completed memory board to the letter. Practical review should also cover image reveals, enlarging photos, the food gallery, keyboard navigation and music controls.
+O resultado fica em `dist/`. `preview` serve para conferir esse build localmente.
 
-## Privacy and hosting
+Os testes cobrem a data, respostas erradas, pontuação sem duplicidade, a pergunta 7, os 92% + oito cliques e a abertura da carta somente depois de todas as lembranças. Na conferência prática, teste também o áudio, a galeria, a ampliação das fotos, a oitava foto e a repetição/saída da órbita.
 
-Everything currently runs locally. The date screen is part of the experience, not authentication. `noindex` requests exclusion from search engines but does not restrict access. Hosting and real access control remain to be chosen before publishing personal media.
+## Publicação
 
-## Version control
+O workflow [Publish Loveometro](.github/workflows/pages.yml) é **manual**. Fazer push atualiza o código, mas não publica nem altera o acesso ao site automaticamente.
 
-This initial delivery uses version `0.1.0`. There was no pre-existing version changelog. Personal media, audio, dependencies, temporary previews and generated builds are excluded from the repository.
+A publicação está preparada para usar um pacote de mídias na release privada `site-media`, separado do histórico Git. O pacote foi gerado localmente; a release e seu envio ainda aguardam autorização. Com esse pacote disponível, o workflow restaura as mídias, confere os arquivos, executa os testes e gera o site antes de publicar. Os originais permanecem somente no computador e no backup pessoal.
+
+Consulte [Publicação e mídias](docs/DEPLOYMENT.md) para preparar o pacote, atualizar os arquivos e publicar.
+
+## Privacidade
+
+- O repositório é privado; fotos, áudio, dependências, builds e temporários ficam fora do histórico do código.
+- **GitHub Pages comum publica um site acessível pela internet, mesmo quando o repositório é privado.** A ativação do LIVE está pendente dessa confirmação de acesso.
+- A data inicial faz parte da brincadeira e **não é autenticação**. `noindex` pede exclusão dos buscadores, mas não protege o conteúdo.
+- O build contém as fotos preparadas e o áudio. Regras de `.gitignore` não restringem o acesso aos arquivos que forem publicados nem concedem licença de redistribuição da música.
+
+Mantenha um backup separado das mídias: o histórico do código não substitui esse backup. A versão inicial do projeto permanece `0.1.0`.

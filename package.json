@@ -9,6 +9,8 @@
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
     "prepare:media": "node scripts/prepare-media.mjs",
+    "check:media": "node scripts/check-media.mjs",
+    "package:media": "node scripts/package-media.mjs",
     "test": "node --test"
   },
   "devDependencies": {
