@@ -1,6 +1,6 @@
 name: Publish Loveometro
 
-# Publication is manual so pushing code never exposes personal media by itself.
+# Publication is manual so pushing code never republishes an offline site.
 on:
   workflow_dispatch:
 
@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Restore publication media from the private repository release
+      - name: Restore publication media from the repository release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

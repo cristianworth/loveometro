@@ -2,23 +2,24 @@
 
 ## Estado atual e acesso
 
-- Código: [repositório privado no GitHub](https://github.com/cristianworth/loveometro), branch `master`.
-- LIVE previsto: [https://cristianworth.github.io/loveometro/](https://cristianworth.github.io/loveometro/).
-- O envio das 35 fotos otimizadas e do MP3 à release privada e a ativação do LIVE público foram autorizados.
-- O GitHub recusou a ativação com HTTP 422: `Your current plan does not support GitHub Pages for this repository.` O repositório permanece privado e não há LIVE publicado.
-- O pacote de mídias foi preparado em `.local/site-media.tar.gz`, mas ainda não foi enviado ao GitHub. A release privada `site-media` só será criada quando a hospedagem estiver resolvida.
+- Código: [repositório temporariamente público no GitHub](https://github.com/cristianworth/loveometro), branch `master`.
+- LIVE: [https://cristianworth.github.io/loveometro/](https://cristianworth.github.io/loveometro/).
+- A visibilidade pública do código, carta, histórico e pacote de mídias foi autorizada para viabilizar Pages no plano atual.
+- O pacote das 35 fotos otimizadas e do MP3 está na [release `site-media`](https://github.com/cristianworth/loveometro/releases/tag/site-media).
 - O workflow é manual: nenhum push publica o site automaticamente.
 
-Para usar Pages a partir deste repositório privado, a conta precisa de um plano compatível, como GitHub Pro. O plano atual não suporta essa configuração. As alternativas são ativar um plano compatível, escolher outra hospedagem mantendo o código privado ou autorizar explicitamente a mudança de visibilidade do repositório. Consulte a [documentação do GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
+Primeira publicação concluída e conferida em 28/10/2026: [execução do GitHub Actions](https://github.com/cristianworth/loveometro/actions/runs/40767719134). A conferência incluiu os 35 arquivos de imagem, o áudio, o questionário até 100%, a órbita, o mural completo e a carta.
+
+O plano atual exige repositório público para GitHub Pages. Ao terminar a comemoração, volte para privado: isso oculta o repositório de visitantes sem acesso e despublica automaticamente o Pages no GitHub Free. Consulte a [documentação do GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
 
 ## O que vai para cada lugar
 
 | Conteúdo | Destino |
 | --- | --- |
-| Código, testes e documentação | Histórico do repositório privado. |
+| Código, testes e documentação | Histórico do repositório, público enquanto essa visibilidade estiver ativa. |
 | Fotos e prints originais | `imagens/` e backup pessoal; excluídos do Git e do pacote. |
-| Fotos WebP preparadas e MP3 | Pacote `site-media.tar.gz` na release privada `site-media`. |
-| HTML, CSS, JavaScript, fotos preparadas e áudio do build | Artefato temporário do Actions e, após publicação autorizada, GitHub Pages. |
+| Fotos WebP preparadas e MP3 | Pacote `site-media.tar.gz` na release `site-media`, com a mesma visibilidade do repositório. |
+| HTML, CSS, JavaScript, fotos preparadas e áudio do build | Artefato temporário do Actions e GitHub Pages. |
 | Credenciais | Gerenciador de credenciais local e `GITHUB_TOKEN` do Actions; nunca nos arquivos do projeto. |
 
 ## Preparar ou atualizar as mídias
@@ -33,7 +34,7 @@ npm run package:media
 
 O pacote gerado em `.local/site-media.tar.gz` inclui somente os arquivos exigidos pelo site: as imagens WebP declaradas em `src/media.js` e `song/Avenged_Sevenfold_-_Gunslinger.mp3`. O comando exige `tar`, disponível no Windows atual e no runner Ubuntu do Actions. Originais, arquivos avulsos, credenciais e vídeos não entram no pacote.
 
-Após autorizar o envio, crie uma release privada com a tag `site-media` na [página de releases do repositório](https://github.com/cristianworth/loveometro/releases) e envie o pacote como asset. Quando substituir fotos ou música, substitua esse asset antes da próxima execução de publicação. O workflow usa sempre o arquivo com o nome `site-media.tar.gz` dessa release.
+O pacote fica como asset da [release `site-media`](https://github.com/cristianworth/loveometro/releases/tag/site-media). Quando substituir fotos ou música, substitua esse asset antes da próxima execução de publicação. O workflow usa sempre o arquivo com o nome `site-media.tar.gz` dessa release. Seu acesso acompanha a visibilidade do repositório.
 
 Com GitHub CLI instalado e autenticado, o envio de uma atualização pode ser feito assim:
 
@@ -41,11 +42,11 @@ Com GitHub CLI instalado e autenticado, o envio de uma atualização pode ser fe
 gh release upload site-media .local/site-media.tar.gz --clobber --repo cristianworth/loveometro
 ```
 
-Esse comando substitui o pacote na release privada; não publica o site.
+Esse comando substitui o pacote na release; não executa o workflow de publicação. O novo pacote pode ser baixado por quem tiver acesso à release.
 
 ## Restaurar o projeto em outro computador
 
-Depois de clonar o repositório privado e instalar as dependências, baixe `site-media.tar.gz` da release e extraia na raiz do projeto. Com GitHub CLI:
+Depois de clonar o repositório e instalar as dependências, baixe `site-media.tar.gz` da release e extraia na raiz do projeto. Se o repositório já tiver voltado para privado, autentique-se com uma conta autorizada. Com GitHub CLI:
 
 ```sh
 gh release download site-media --pattern site-media.tar.gz --dir .local --repo cristianworth/loveometro
@@ -56,10 +57,10 @@ npm run dev
 
 Essa restauração permite executar e construir o site. Para gerar novas cópias com `prepare:media`, também é necessário restaurar os originais de `imagens/` a partir do backup pessoal.
 
-## Publicar após confirmar o acesso público
+## Publicar ou atualizar o LIVE
 
-1. Habilite GitHub Pages em **Settings → Pages**, usando **GitHub Actions** como fonte. Preserve o repositório privado.
-2. Confirme que a release privada `site-media` contém o pacote atualizado.
+1. Mantenha a visibilidade pública enquanto quiser o LIVE ativo no plano atual. O Pages usa **GitHub Actions** como fonte em **Settings → Pages**.
+2. Confirme que a release `site-media` contém o pacote atualizado.
 3. Em **Actions → Publish Loveometro → Run workflow**, escolha `master` e execute.
 4. Acompanhe os jobs `build` e `deploy`. Só considere publicado depois que o job de deploy terminar com sucesso.
 5. Abra a URL retornada pelo deploy e confira entrada, fotos, áudio, órbita e carta. Atualize o estado do LIVE no README com o endereço confirmado.
@@ -77,11 +78,13 @@ O workflow tem permissões de leitura do código, das mídias e da configuraçã
 
 ## Caso a publicação falhe
 
-Se o Pages não estiver disponível no plano da conta, preserve o repositório privado e escolha uma hospedagem compatível antes de alterar a visibilidade. Se faltar mídia, atualize o pacote da release e execute novamente o workflow. Uma execução com falha não deve ser apresentada como LIVE concluído.
+Se o repositório tiver voltado para privado, o plano atual não permitirá republicar: será necessário autorizar novamente o acesso público ou escolher um plano/hospedagem compatível. Se faltar mídia, atualize o pacote da release e execute novamente o workflow. Uma execução com falha não deve ser apresentada como LIVE concluído.
 
 ## Tirar o LIVE do ar
 
-Em **Settings → Pages**, use **Unpublish site** para remover a publicação atual. Após a despublicação, o endereço deixa de servir o site; o repositório e o histórico continuam privados. Não é necessário apagar o código.
+Para encerrar a comemoração e ocultar também o projeto do perfil público, abra **Settings → General → Danger Zone → Change repository visibility** e volte o repositório para **privado**. No GitHub Free, o Pages é automaticamente despublicado com essa alteração. Confira o acesso ao repositório e ao LIVE sem estar autenticado. Não é necessário apagar o código.
+
+Se quiser apenas desligar o site, em **Settings → Pages** use **Unpublish site**. Isso remove a publicação atual, mas não muda a visibilidade do repositório: se ele continuar público, seu código e histórico continuarão acessíveis.
 
 Como o workflow é manual, fazer push não liga o LIVE novamente. Para republicar, é necessário executar uma nova publicação. Uma página ou mídia que alguém já tenha salvo pode continuar existindo fora do LIVE; isso não exige acesso ao repositório privado.
 
