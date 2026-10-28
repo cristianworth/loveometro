@@ -7,6 +7,9 @@ export const media = {
   thirdFlowers: { source: 'flores/flor-3.jpg', alt: 'O outro arranjo de flores que eu te dei.', caption: 'E eu daria de novo.' },
   picnicFood: { source: 'comida-piquenique.png', alt: 'As comidas do nosso piquenique.', caption: 'Um pouquinho de tudo, com você.' },
   picnicPlace: { source: 'local-piquenique.jpg', alt: 'Nosso piquenique na praça, com a toalha sobre a grama.', caption: 'Um date simples. Uma lembrança enorme.' },
+  lagoonPicnic: { source: 'piquenique-lagoa-dos-patos.jpg', alt: 'Nosso outro piquenique, na Lagoa dos Patos.', caption: 'Outro piquenique para guardar. Na Lagoa dos Patos.' },
+  lagoonTerere: { source: 'terere-lagoa-dos-patos.png', alt: 'Nosso tereré durante o piquenique na Lagoa dos Patos.', caption: 'Um tereré e a sua companhia.' },
+  driving: { source: 'eu-dirigindo.jpg', alt: 'Cristian dirigindo.', caption: 'Seu motorista para os próximos dates.' },
   gourmet: { source: 'comida/comida_gourmet.png', alt: 'Nosso encontro para experimentar comida juntos.', caption: 'O ingrediente favorito era a companhia.' },
   daniel: { source: 'foto-com-daniel.jpg', alt: 'Nós em um rolê com o Daniel.', caption: 'Daniel também fez parte dos nossos rolês.' },
   family: { source: 'foto-com-familia.jpg', alt: 'Nosso encontro com a família, fotografado por Cristiane.', caption: 'E a Cristiane registrou esse encontro com a família.' },
@@ -34,6 +37,7 @@ export const media = {
   necklace: { source: '8marks/presente-que-dei-um-colar-pra-ela.png', alt: 'Você mostrando o colar que eu te dei.', caption: 'Pequenos presentes, tanto carinho.' },
   shopping: { source: '8marks/primeira-vez-juntos-no-shopping.png', alt: 'Nossa primeira vez juntos no shopping.', caption: 'Os nossos primeiros rolês.' },
   pickingFlowers: { source: '8marks/saimos-juntos-coletar-flores.jpg', alt: 'Nós juntos em um passeio para coletar flores.', caption: 'E as flores que a gente encontrou pelo caminho.' },
+  twoFlowers: { source: '8marks/foto-com-duas-flores-ela-e-uma-de-verdade.jpg', alt: 'Nós dois com uma flor rosa sobre a mesa.', caption: 'Duas flores. Uma delas é você.' },
 };
 
 export const mediaUrl = (id) => `${import.meta.env.BASE_URL}media/${id}.webp`;

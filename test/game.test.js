@@ -4,8 +4,8 @@ import { addMonth, answerQuestion, createGame, getProgress, isSpecialDate, nextQ
 import { finalMemories, questions } from '../src/content.js';
 
 test('the date accepts both keyboard formats and rejects other dates', () => {
-  for (const value of ['28/02', '2802', ' 28/02 ']) assert.equal(isSpecialDate(value), true);
-  for (const value of ['', '28/03', '28022026', '2/802', '28/02abc']) assert.equal(isSpecialDate(value), false);
+  for (const value of ['28/01', '2801', ' 28/01 ']) assert.equal(isSpecialDate(value), true);
+  for (const value of ['', '28/02', '28/03', '28012026', '2/801', '28/01abc']) assert.equal(isSpecialDate(value), false);
 });
 
 test('incorrect answers neither award progress nor unlock the next question', () => {
@@ -18,20 +18,30 @@ test('incorrect answers neither award progress nor unlock the next question', ()
 });
 
 test('an accepted answer awards progress only once, including double clicks', () => {
-  const first = answerQuestion(createGame(8), questions[0], 0);
+  const first = answerQuestion(createGame(questions.length), questions[0], 0);
   const repeated = answerQuestion(first.game, questions[0], 0);
   assert.equal(repeated.result, 'ignored');
-  assert.equal(getProgress(repeated.game), 11.5);
+  assert.equal(getProgress(repeated.game), 91 / 9);
 });
 
-test('question seven requires all three groups and reveals all three memories', () => {
-  const question = questions[6];
-  assert.equal(answerQuestion(createGame(8), question, 3).result, 'correct');
-  for (const rejected of [0, 1, 2]) assert.equal(answerQuestion(createGame(8), question, rejected).result, 'incorrect');
+test('question eight requires all three groups and reveals all three memories', () => {
+  const question = questions[7];
+  assert.equal(answerQuestion(createGame(questions.length), question, 3).result, 'correct');
+  for (const rejected of [0, 1, 2]) assert.equal(answerQuestion(createGame(questions.length), question, rejected).result, 'incorrect');
   assert.deepEqual(question.photos, ['daniel', 'family', 'fortalezaFriends']);
 });
 
-test('the complete journey stops at 92 then needs exactly eight individual clicks', () => {
+test('the driver question follows food and keeps both inclusive answers last', () => {
+  assert.equal(questions.length, 9);
+  assert.deepEqual(questions.slice(5).map((question) => question.id), ['food', 'best-driver', 'our-people', 'our-routine']);
+  const driver = questions[6];
+  assert.equal(driver.options[driver.correct[0]], 'Cristian.');
+  assert.deepEqual(driver.photos, ['driving']);
+  for (const question of questions.slice(-2)) assert.deepEqual(question.correct, [3]);
+  assert.equal(questions.find((question) => question.id === 'picnic').photos.length, 4);
+});
+
+test('the complete journey stops at 91 then needs exactly nine individual clicks', () => {
   let game = createGame(questions.length);
   assert.deepEqual(addMonth(game), game);
   for (const question of questions) {
@@ -39,22 +49,22 @@ test('the complete journey stops at 92 then needs exactly eight individual click
     game = nextQuestion(game);
   }
   assert.equal(game.stage, 'months');
-  assert.equal(getProgress(game), 92);
-  for (let count = 1; count <= 8; count++) {
+  assert.equal(getProgress(game), 91);
+  for (let count = 1; count <= 9; count++) {
     game = addMonth(game);
-    assert.equal(getProgress(game), 92 + count);
-    assert.equal(game.stage, count === 8 ? 'memories-complete' : 'months');
+    assert.equal(getProgress(game), 91 + count);
+    assert.equal(game.stage, count === 9 ? 'memories-complete' : 'months');
   }
   assert.deepEqual(addMonth(game), game);
-  assert.equal(finalMemories.length, 8);
+  assert.equal(finalMemories.length, 9);
   assert.equal(game.months, finalMemories.length);
   assert.equal(openLetter(game).stage, 'final');
   assert.equal(getProgress(openLetter(game)), 100);
 });
 
-test('the letter cannot open before all eight memories have been revealed', () => {
+test('the letter cannot open before all nine memories have been revealed', () => {
   const quiz = createGame(questions.length);
   assert.deepEqual(openLetter(quiz), quiz);
-  const incomplete = { ...quiz, stage: 'months', completedQuestions: questions.length, months: 7 };
+  const incomplete = { ...quiz, stage: 'months', completedQuestions: questions.length, months: 8 };
   assert.deepEqual(openLetter(incomplete), incomplete);
 });

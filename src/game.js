@@ -1,5 +1,8 @@
+export const anniversaryMonths = 9;
+export const quizProgress = 100 - anniversaryMonths;
+
 export function isSpecialDate(value) {
-  return /^28\/?02$/.test(String(value).trim());
+  return /^28\/?01$/.test(String(value).trim());
 }
 
 export function createGame(totalQuestions) {
@@ -8,7 +11,7 @@ export function createGame(totalQuestions) {
 }
 
 export function getProgress(game) {
-  return 92 * game.completedQuestions / game.totalQuestions + game.months;
+  return quizProgress * game.completedQuestions / game.totalQuestions + game.months;
 }
 
 export function answerQuestion(game, question, optionIndex) {
@@ -25,8 +28,8 @@ export function nextQuestion(game) {
 
 export function addMonth(game) {
   if (game.stage !== 'months') return game;
-  const months = Math.min(8, game.months + 1);
-  return { ...game, months, stage: months === 8 ? 'memories-complete' : 'months' };
+  const months = Math.min(anniversaryMonths, game.months + 1);
+  return { ...game, months, stage: months === anniversaryMonths ? 'memories-complete' : 'months' };
 }
 
 export function openLetter(game) {

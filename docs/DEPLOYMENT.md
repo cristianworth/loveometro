@@ -5,7 +5,7 @@
 - Código: [repositório temporariamente público no GitHub](https://github.com/cristianworth/loveometro), branch `master`.
 - LIVE: [https://cristianworth.github.io/loveometro/](https://cristianworth.github.io/loveometro/).
 - A visibilidade pública do código, carta, histórico e pacote de mídias foi autorizada para viabilizar Pages no plano atual.
-- O pacote das 35 fotos otimizadas e do MP3 está na [release `site-media`](https://github.com/cristianworth/loveometro/releases/tag/site-media).
+- O pacote das 39 fotos otimizadas e do MP3 está na [release `site-media`](https://github.com/cristianworth/loveometro/releases/tag/site-media).
 - O workflow é manual: nenhum push publica o site automaticamente.
 
 Primeira publicação concluída e conferida em 28/10/2026: [execução do GitHub Actions](https://github.com/cristianworth/loveometro/actions/runs/40767719134). A conferência incluiu os 35 arquivos de imagem, o áudio, o questionário até 100%, a órbita, o mural completo e a carta.
@@ -69,11 +69,11 @@ O workflow tem permissões de leitura do código, das mídias e da configuraçã
 
 ## Conferências do LIVE
 
-- Uma data errada mantém a abertura; `28/02` inicia o questionário e tenta tocar a música.
+- Uma data errada mantém a abertura; `28/01` inicia o questionário e tenta tocar a música.
 - Respostas erradas permitem nova tentativa e não pontuam; cada pergunta certa pontua uma única vez.
-- A pergunta 7 exige “Todos acima” e mostra as três fotos.
-- Oito cliques levam de 92% a 100%, mantendo todas as oito lembranças após a órbita.
-- Repetir a órbita, encerrá-la com o botão ou Esc e abrir a carta funcionam com a música em andamento.
+- A pergunta 8 exige “Todos acima” e mostra as três fotos.
+- Nove cliques levam de 91% a 100%, mantendo todas as nove lembranças após a órbita.
+- Repetir a órbita no mural ou na tela da carta, encerrá-la com o botão ou Esc e abrir a carta funcionam com a música em andamento.
 - A mensagem da carta permanece exatamente como foi fornecida.
 
 ## Caso a publicação falhe

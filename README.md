@@ -1,6 +1,6 @@
 # Nosso Loveômetro
 
-Um presente de dada para baby: oito perguntas, lembranças de vocês e um coração que chega aos 100% para celebrar oito meses de namoro. Experiência pensada para PC, com vermelho, rosa, branco, polaroides, rosas e confetes.
+Um presente de Cristian para Nara: nove perguntas, lembranças de vocês e um coração que chega aos 100% para celebrar nove meses de namoro. Experiência pensada para PC, com vermelho, rosa, branco, polaroides, rosas e confetes.
 
 **LIVE:** [cristianworth.github.io/loveometro](https://cristianworth.github.io/loveometro/).
 
@@ -8,14 +8,14 @@ Um presente de dada para baby: oito perguntas, lembranças de vocês e um coraç
 
 ## A experiência
 
-1. A data `28/02` abre a história e inicia **Gunslinger**, do Avenged Sevenfold. A música fica em loop, com controles de pausa e volume.
+1. A data `28/01` abre a história e inicia **Gunslinger**, do Avenged Sevenfold. A música fica em loop, com controles de pausa e volume.
 2. Cada pergunta certa revela fotos e aumenta o loveômetro. Respostas erradas dão dicas e permitem tentar novamente.
-3. As oito perguntas completam **92%**. A pergunta 7 aceita **“Todos acima”** e revela as três fotos dos encontros com amigos e família.
-4. Oito cliques revelam mais oito lembranças e acrescentam **1% por clique**.
+3. As nove perguntas completam **91%**. A pergunta 7 é sobre o melhor motorista; as duas últimas mantêm respostas que reúnem todas as alternativas. A pergunta 8 aceita **“Todos acima”** e revela as três fotos dos encontros com amigos e família.
+4. Nove cliques revelam mais nove lembranças e acrescentam **1% por clique**.
 5. Aos **100%**, as fotos orbitam um coração luminoso e retornam ao mural. A sequência dura cerca de 5,6 segundos e pode ser repetida ou encerrada antes.
-6. **“Abrir minha carta”** exibe a mensagem pessoal, preservada conforme o texto fornecido.
+6. **“Abrir minha carta”** exibe a mensagem pessoal, preservada conforme o texto fornecido. A tela final também permite **“Rever nossa órbita”**, sem reiniciar o questionário.
 
-As oito fotos finais representam lembranças do relacionamento, sem atribuir cada imagem a um mês específico. As imagens reveladas podem ser ampliadas; a pergunta das comidas tem uma galeria própria. A animação respeita a preferência por movimento reduzido.
+As nove fotos finais representam lembranças do relacionamento, sem atribuir cada imagem a um mês específico. As imagens reveladas podem ser ampliadas; a pergunta das comidas tem uma galeria própria. A animação respeita a preferência por movimento reduzido.
 
 ## Executar no computador
 
@@ -27,7 +27,7 @@ npm run prepare:media
 npm run dev
 ```
 
-Abra a URL `Local` exibida pelo Vite. A entrada aceita `28/02` ou `2802`.
+Abra a URL `Local` exibida pelo Vite. A entrada aceita `28/01` ou `2801`.
 
 As mídias ficam nos caminhos abaixo e não acompanham um clone do código:
 
@@ -41,7 +41,7 @@ O pacote de mídias da [release `site-media`](https://github.com/cristianworth/l
 
 | Arquivo | Responsabilidade |
 | --- | --- |
-| [src/content.js](src/content.js) | Perguntas, alternativas, dicas, ordem das oito lembranças e carta. |
+| [src/content.js](src/content.js) | Perguntas, alternativas, dicas, ordem das nove lembranças e carta. |
 | [src/media.js](src/media.js) | Caminhos dos originais, legendas e descrições das imagens. |
 | [src/game.js](src/game.js) | Pontuação, avanço entre etapas e abertura da carta. |
 | [src/main.js](src/main.js) | Telas, eventos, galeria, fotos ampliadas e música. |
@@ -61,7 +61,7 @@ npm run preview
 
 O resultado fica em `dist/`. `preview` serve para conferir esse build localmente.
 
-Os testes cobrem a data, respostas erradas, pontuação sem duplicidade, a pergunta 7, os 92% + oito cliques e a abertura da carta somente depois de todas as lembranças. Na conferência prática, teste também o áudio, a galeria, a ampliação das fotos, a oitava foto e a repetição/saída da órbita.
+Os testes cobrem a data, respostas erradas, pontuação sem duplicidade, a pergunta 8, os 91% + nove cliques e a abertura da carta somente depois de todas as lembranças. Na conferência prática, teste também o áudio, a galeria, a ampliação das fotos, a nona foto e a repetição/saída da órbita.
 
 ## Publicação
 

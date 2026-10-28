@@ -137,6 +137,10 @@ button:disabled { cursor: default; }
 .count-3 .polaroid:first-child { grid-column: 1 / -1; width: 64%; }
 .count-3 .photo-button img { height: 160px; }
 .count-3 .polaroid figcaption { font-size: 11px; }
+.count-4 { grid-template-columns: 1fr 1fr; gap: 18px 12px; }
+.count-4 .polaroid { padding: 7px 7px 10px; }
+.count-4 .photo-button img { height: 150px; }
+.count-4 .polaroid figcaption { font-size: 11px; }
 .chapter-progress { display: flex; gap: 12px; justify-content: center; color: #e8cad6; font-size: 20px; margin: 29px 0 3px; }
 .chapter-progress .current { color: var(--rose); }
 .chapter-progress .done { color: var(--cherry); }
@@ -161,7 +165,7 @@ button:disabled { cursor: default; }
 .months-workspace h1 { font-family: var(--display); font-weight: normal; font-size: 42px; line-height: 1.16; margin-top: 12px; letter-spacing: -1px; }
 .months-workspace h1 em { color: var(--cherry); }
 .months-description { font-size: 12px; color: var(--muted); margin-top: 15px; }
-.memory-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px 20px; margin: 35px 0 28px; padding: 0 8px; }
+.memory-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px 20px; margin: 35px 0 28px; padding: 0 8px; }
 .memory-board .polaroid { padding: 7px 7px 10px; }
 .memory-board .photo-button img { height: 145px; object-fit: cover; }
 .memory-board .polaroid figcaption { font-size: 11px; min-height: 43px; padding-top: 9px; }
@@ -236,10 +240,11 @@ button:disabled { cursor: default; }
 .final-letter p { font-family: var(--display); font-size: 19px; line-height: 1.85; }
 .final-letter p + p { margin-top: 24px; }
 .final-letter .final-signature { color: var(--cherry); font-style: italic; font-size: 24px; margin-top: 30px; }
-.final-photo-wall { display: grid; grid-template-columns: repeat(8, 1fr); gap: 14px; margin: 42px 0 38px; padding: 0 6px; }
+.final-photo-wall { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 900px; margin-left: auto; margin-right: auto; gap: 14px; margin: 42px auto 38px; padding: 0 6px; }
 .final-photo-wall .polaroid { padding: 6px 6px 9px; animation-delay: calc(var(--photo-index) * 90ms); }
 .final-photo-wall .photo-button img { height: 158px; object-fit: cover; }
 .final-photo-wall .polaroid figcaption { font-size: 10px; padding-top: 9px; line-height: 1.35; }
+.memory-board [data-photo="twoFlowers"] img, .final-photo-wall [data-photo="twoFlowers"] img { object-fit: contain; }
 .final-actions { display: flex; gap: 22px; justify-content: center; align-items: center; }
 .secondary-button { color: var(--cherry); background: white; border: 1px solid #d69aae; border-radius: 30px; padding: 11px 19px; font-size: 12px; }
 .text-button { background: none; border: 0; color: var(--muted); text-decoration: underline; text-underline-offset: 4px; font-size: 12px; }
@@ -265,7 +270,7 @@ button:disabled { cursor: default; }
   .memory-board { gap: 22px 15px; }
   .memory-board .photo-button img { height: 135px; }
   .empty-polaroid { min-height: 195px; }
-  .final-photo-wall { grid-template-columns: repeat(4, 1fr); max-width: 820px; margin-left: auto; margin-right: auto; gap: 25px; }
+  .final-photo-wall { grid-template-columns: repeat(3, 1fr); max-width: 820px; margin-left: auto; margin-right: auto; gap: 25px; }
 }
 @media (max-height: 800px) {
   .entry-screen { padding-top: 28px; padding-bottom: 40px; }

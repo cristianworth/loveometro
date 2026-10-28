@@ -1,7 +1,7 @@
 import confetti from 'canvas-confetti';
 import './styles.css';
 import { couple, finalMemories, questions } from './content.js';
-import { addMonth, answerQuestion, createGame, getProgress, isSpecialDate, nextQuestion, openLetter } from './game.js';
+import { addMonth, anniversaryMonths, answerQuestion, createGame, getProgress, isSpecialDate, nextQuestion, openLetter } from './game.js';
 import { media, mediaUrl } from './media.js';
 import { playMemoryOrbit } from './celebration.js';
 
@@ -40,7 +40,7 @@ function meter() {
 }
 
 function renderEntry() {
-  app.innerHTML = `<section class="entry-screen screen-arrives"><div class="entry-copy"><p class="personal-note">Para a minha baby,</p><h1>Tem uma data<br>que mudou<br><em>tudo.</em></h1><p class="entry-description">De todas as partidas, conversas e caminhos,<br>o meu favorito foi o que me trouxe até você.</p><div class="entry-signature">Com amor, dada <span aria-hidden="true">♡</span></div></div><div class="envelope-scene"><div class="envelope-back"></div><section class="entry-letter"><span class="letter-heart" aria-hidden="true">♡</span><h2>Você lembra<br>do nosso começo?</h2><p>Tem uma data que abre essa história.</p><form id="date-form" novalidate><label for="special-date">Qual é a nossa data?</label><input id="special-date" name="date" type="text" inputmode="numeric" placeholder="DD / MM" maxlength="5" autocomplete="off" aria-describedby="date-feedback" required /><p id="date-feedback" class="date-feedback" role="status">Uma dica: o dia em que tudo ficou oficial.</p><button class="primary-button" type="submit">Abrir nossa história ${heart}</button></form><span class="letter-footnote">oito meses. tanta coisa nossa.</span></section><div class="envelope-front" aria-hidden="true"></div><div class="envelope-rose">${rose}</div><span class="envelope-stamp" aria-hidden="true">feito<br>com<br>amor ♡</span></div></section>`;
+  app.innerHTML = `<section class="entry-screen screen-arrives"><div class="entry-copy"><p class="personal-note">Para a minha baby,</p><h1>Tem uma data<br>que mudou<br><em>tudo.</em></h1><p class="entry-description">De todas as partidas, conversas e caminhos,<br>o meu favorito foi o que me trouxe até você.</p><div class="entry-signature">Com amor, Cristian <span aria-hidden="true">♡</span></div></div><div class="envelope-scene"><div class="envelope-back"></div><section class="entry-letter"><span class="letter-heart" aria-hidden="true">♡</span><h2>Você lembra<br>do nosso começo?</h2><p>Tem uma data que abre essa história.</p><form id="date-form" novalidate><label for="special-date">Qual é a nossa data?</label><input id="special-date" name="date" type="text" inputmode="numeric" placeholder="DD / MM" maxlength="5" autocomplete="off" aria-describedby="date-feedback" required /><p id="date-feedback" class="date-feedback" role="status">Uma dica: o dia em que tudo ficou oficial.</p><button class="primary-button" type="submit">Abrir nossa história ${heart}</button></form><span class="letter-footnote">nove meses. tanta coisa nossa.</span></section><div class="envelope-front" aria-hidden="true"></div><div class="envelope-rose">${rose}</div><span class="envelope-stamp" aria-hidden="true">feito<br>com<br>amor ♡</span></div></section>`;
   document.querySelector('#date-form').addEventListener('submit', unlock);
   document.querySelector('#special-date').addEventListener('input', (event) => {
     const digits = event.target.value.replace(/\D/g, '').slice(0, 4);
@@ -94,23 +94,24 @@ function celebrate({ big = false, origin } = {}) {
 
 function renderMonths(enter = false) {
   const complete = game.stage === 'memories-complete';
-  app.innerHTML = `<section class="game-layout months-layout ${enter ? 'screen-arrives' : ''}">${meter()}<section class="months-workspace"><p class="personal-note">${complete ? 'Agora está tudo aqui. Cheio de nós.' : 'Ué… ainda falta alguma coisa.'}</p><h1 id="months-title" tabindex="-1">Oito meses.<br><em>Oito pedacinhos de nós.</em></h1><p class="months-description">${complete ? 'Oito lembranças guardadas. E uma carta minha para você.' : 'Cada clique, uma lembrança. Cada lembrança, um pouquinho mais de amor.'}</p><div class="memory-board">${finalMemories.map((id, index) => index < game.months ? photo(id, { small: true, newPhoto: index === game.months - 1, index }) : `<div class="empty-polaroid" aria-label="Lembrança ${index + 1} ainda guardada"><span aria-hidden="true">♡</span><span>${index + 1}</span></div>`).join('')}</div>${complete ? `<div class="completed-memory-actions"><button class="primary-button" data-open-letter>Abrir minha carta ${heart}</button><button class="text-button" data-replay-orbit>Rever nossa órbita</button></div>` : '<button class="love-button" id="add-love" aria-label="Adicionar 1% e revelar a próxima lembrança"><span aria-hidden="true">♥</span><span>Mais um pedacinho</span><span class="love-increment">+1%</span></button>'}<p class="click-counter" role="status">${game.months} de 8 lembranças reveladas</p></section></section>`;
+  app.innerHTML = `<section class="game-layout months-layout ${enter ? 'screen-arrives' : ''}">${meter()}<section class="months-workspace"><p class="personal-note">${complete ? 'Agora está tudo aqui. Cheio de nós.' : 'Ué… ainda falta alguma coisa.'}</p><h1 id="months-title" tabindex="-1">Nove meses.<br><em>Nove pedacinhos de nós.</em></h1><p class="months-description">${complete ? 'Nove lembranças guardadas. E uma carta minha para você.' : 'Cada clique, uma lembrança. Cada lembrança, um pouquinho mais de amor.'}</p><div class="memory-board">${finalMemories.map((id, index) => index < game.months ? photo(id, { small: true, newPhoto: index === game.months - 1, index }) : `<div class="empty-polaroid" aria-label="Lembrança ${index + 1} ainda guardada"><span aria-hidden="true">♡</span><span>${index + 1}</span></div>`).join('')}</div>${complete ? `<div class="completed-memory-actions"><button class="primary-button" data-open-letter>Abrir minha carta ${heart}</button><button class="text-button" data-replay-orbit>Rever nossa órbita</button></div>` : '<button class="love-button" id="add-love" aria-label="Adicionar 1% e revelar a próxima lembrança"><span aria-hidden="true">♥</span><span>Mais um pedacinho</span><span class="love-increment">+1%</span></button>'}<p class="click-counter" role="status">${game.months} de ${anniversaryMonths} lembranças reveladas</p></section></section>`;
 }
 
 async function startOrbitCelebration() {
-  if (orbitPlaying || game?.stage !== 'memories-complete') return;
+  if (orbitPlaying || !['memories-complete', 'final'].includes(game?.stage)) return;
   orbitPlaying = true;
   const replay = document.querySelector('[data-replay-orbit]');
+  const returnFocus = game.stage === 'final' ? replay : document.querySelector('[data-open-letter]');
   replay.disabled = true;
   try {
-    await playMemoryOrbit(document.querySelector('.memory-board'));
+    await playMemoryOrbit(document.querySelector(game.stage === 'final' ? '.final-photo-wall' : '.memory-board'));
   } catch (error) {
     console.warn('The celebration could not finish; the memory board is still available.', error);
   } finally {
     orbitPlaying = false;
     if (replay.isConnected) {
       replay.disabled = false;
-      document.querySelector('[data-open-letter]').focus({ preventScroll: true });
+      returnFocus?.focus({ preventScroll: true });
     }
   }
 }
@@ -118,7 +119,7 @@ async function startOrbitCelebration() {
 function renderFinal() {
   const paragraphs = couple.closingMessage.split('\n\n');
   const letter = paragraphs.map((paragraph, index) => `<p${index === paragraphs.length - 1 ? ' class="final-signature"' : ''}>${escapeHtml(paragraph)}</p>`).join('');
-  app.innerHTML = `<section class="final-screen screen-arrives"><div class="final-heading"><div class="hundred">100<span>%</span><span class="hundred-heart" aria-hidden="true">♥</span></div><p class="personal-note">Feliz oito meses, baby.</p><h1 id="final-title" tabindex="-1">${escapeHtml(couple.closingTitle)}</h1></div><div class="letter-stationery"><div class="letter-envelope" aria-hidden="true"><span class="envelope-fold"></span><span class="letter-wax-seal">♥</span></div><article class="final-letter" aria-label="Carta de dada para baby"><header class="letter-heading"><div class="letter-address"><span>De dada,</span><h2>para a minha baby.</h2><p>Três de Maio <span aria-hidden="true">♡</span> Fortaleza</p></div><div class="letter-postage" aria-hidden="true"><span>♥</span><span>8 meses</span></div><div class="letter-postmark" aria-hidden="true"><span>com amor</span><strong>28/10</strong><span>desde 28/02</span></div></header><div class="letter-content">${letter}</div><div class="letter-pressed-rose" aria-hidden="true">${rose}</div></article></div><div class="final-photo-wall">${finalMemories.map((id, index) => photo(id, { small: true, newPhoto: true, index })).join('')}</div><div class="final-actions"><button class="secondary-button" data-celebrate>Mais confetes! ${heart}</button><button class="text-button" data-restart>Rever nossa história</button></div><p class="final-postscript">e que venham todos os próximos capítulos.</p></section>`;
+  app.innerHTML = `<section class="final-screen screen-arrives"><div class="final-heading"><div class="hundred">100<span>%</span><span class="hundred-heart" aria-hidden="true">♥</span></div><p class="personal-note">Feliz nove meses, baby.</p><h1 id="final-title" tabindex="-1">${escapeHtml(couple.closingTitle)}</h1></div><div class="letter-stationery"><div class="letter-envelope" aria-hidden="true"><span class="envelope-fold"></span><span class="letter-wax-seal">♥</span></div><article class="final-letter" aria-label="Carta de dada para baby"><header class="letter-heading"><div class="letter-address"><span>De dada,</span><h2>para a minha baby.</h2><p>Três de Maio <span aria-hidden="true">♡</span> Fortaleza</p></div><div class="letter-postage" aria-hidden="true"><span>♥</span><span>${anniversaryMonths} meses</span></div><div class="letter-postmark" aria-hidden="true"><span>com amor</span><strong>28/10</strong><span>desde ${couple.date}</span></div></header><div class="letter-content">${letter}</div><div class="letter-pressed-rose" aria-hidden="true">${rose}</div></article></div><div class="final-photo-wall">${finalMemories.map((id, index) => photo(id, { small: true, newPhoto: true, index })).join('')}</div><div class="final-actions"><button class="secondary-button" data-replay-orbit>Rever nossa órbita ♡</button><button class="secondary-button" data-celebrate>Mais confetes! ${heart}</button><button class="text-button" data-restart>Rever nossa história</button></div><p class="final-postscript">e que venham todos os próximos capítulos.</p></section>`;
   document.querySelector('#final-title').focus({ preventScroll: true });
   window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
   celebrate({ big: true });

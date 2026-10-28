@@ -2,7 +2,7 @@
 export const couple = {
   from: 'dada',
   to: 'baby',
-  date: '28/02',
+  date: '28/01',
   closingTitle: 'O medidor acaba. A gente continua.',
   closingMessage: `O site é feito com IA mas essa mensagem e o nosso amor não são!
 
@@ -45,7 +45,7 @@ export const questions = [
     correct: [1],
     hints: ['Tinha água por perto. E não era neve.', 'Acho que essa lembrança tem piscina…'],
     success: 'Depois de tanta tela, finalmente você estava ali.',
-    note: '28 de fevereiro. O começo oficial da nossa história.',
+    note: '28 de janeiro. O começo oficial da nossa história.',
     photos: ['pool'],
   },
   {
@@ -66,7 +66,7 @@ export const questions = [
     hints: ['Uma toalha, umas comidinhas…', 'A resposta está bem pertinho da grama.'],
     success: 'Um date simples. Uma lembrança enorme.',
     note: 'Não precisava de muito. A companhia já era a melhor parte.',
-    photos: ['picnicPlace', 'picnicFood'],
+    photos: ['picnicPlace', 'picnicFood', 'lagoonPicnic', 'lagoonTerere'],
   },
   {
     id: 'food', chapter: 'Amor com acompanhamento',
@@ -78,6 +78,16 @@ export const questions = [
     note: 'Do gourmet ao lanche de rua. Sempre cabe mais um date com você.',
     photos: ['gourmet', 'burger', 'coffee', 'fries', 'pizza', 'hotdog', 'burgerIcecream', 'breakfast', 'sandwich', 'anotherPizza', 'meat', 'morePizza', 'sausage', 'xis', 'pizzaAgain'],
     layout: 'food',
+  },
+  {
+    id: 'best-driver', chapter: 'Meu piloto favorito',
+    title: 'Quem é o melhor motorista?',
+    options: ['Cristian.', 'Dominic Toretto.', 'Relâmpago McQueen.', 'Speed Racer.'],
+    correct: [0],
+    hints: ['Esse piloto não precisa de um filme para te levar para passear.', 'Uma dica: ele fez esse site para você. ♡'],
+    success: 'Pode deixar que eu te levo para o nosso próximo date.',
+    note: 'O meu destino favorito é sempre pertinho de você.',
+    photos: ['driving'],
   },
   {
     id: 'our-people', chapter: 'Gente que faz parte',
@@ -102,5 +112,5 @@ export const questions = [
   },
 ];
 
-// These are eight memories, not a month-by-month chronology.
-export const finalMemories = ['shopping', 'dogWalk', 'resting', 'necklace', 'pickingFlowers', 'goodbye', 'hug', 'together'];
+// These are nine memories, not a month-by-month chronology.
+export const finalMemories = ['shopping', 'dogWalk', 'resting', 'necklace', 'pickingFlowers', 'goodbye', 'hug', 'twoFlowers', 'together'];
