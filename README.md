@@ -63,6 +63,15 @@ O resultado fica em `dist/`. `preview` serve para conferir esse build localmente
 
 Os testes cobrem a data, respostas erradas, pontuação sem duplicidade, a pergunta 8, os 91% + nove cliques e a abertura da carta somente depois de todas as lembranças. Na conferência prática, teste também o áudio, a galeria, a ampliação das fotos, a nona foto e a repetição/saída da órbita.
 
+## Contribuição
+
+- Para mudanças solicitadas ou aprovadas, use uma branch curta a partir de `master` remota atualizada, preservando trabalho local. Use issue quando houver algo a acompanhar; mudanças pequenas podem ser descritas diretamente no PR.
+- Respeite o escopo autorizado no pedido para issues, branches, commits, push e PR. Esse processo não amplia a autorização de uma entrega nem autoriza operações de mídia, serviços ou publicação.
+- Abra um PR com a mudança, verificações, limitações e issue relacionada, quando houver. Use rascunho enquanto houver revisão ou validação pendente; confira o diff e as verificações aplicáveis ao SHA atual. Não há CI automático de PR; não execute o workflow de publicação apenas para obter um check documental.
+- Integre somente após aprovação de Cristian para o diff revisado. Se o conteúdo mudar após a aprovação, apresente o novo diff e aguarde nova aprovação. Push direto em `master` exige autorização explícita.
+
+Merge e push não publicam o site automaticamente. A publicação é uma operação manual com autorização própria, conforme [Publicação e mídias](docs/DEPLOYMENT.md); preserve a separação entre originais locais, pacote da release e artefato publicado.
+
 ## Publicação
 
 O workflow [Publish Loveometro](.github/workflows/pages.yml) é **manual**. Fazer push atualiza o código, mas não publica nem altera o acesso ao site automaticamente.
